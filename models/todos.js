@@ -10,7 +10,6 @@ const TodoSchema = new mongoose.Schema({
    },
   todo: {
    todoTitle: String
-   }
   }
 });
 
