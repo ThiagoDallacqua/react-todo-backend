@@ -9,7 +9,7 @@ const TodoSchema = new mongoose.Schema({
     username: String
    },
   todo: {
-   todoTitle: String
+   title: String
   }
 });
 

@@ -31,9 +31,9 @@ module.exports = app => {
   });
 
   app.get('/todo', Authentication.isLoggedIn, (req, res) => {
-    let model = app.models.todos;
-    let connect = app.infra.connectionFactory;
-    let Todos = new app.infra.TodoDAO(model, connect);
+    const model = app.models.todos;
+    const connect = app.infra.connectionFactory;
+    const Todos = new app.infra.TodoDAO(model, connect);
 
     Todos.list(req.user._id, (err, result) => {
       if (err) {
@@ -43,8 +43,8 @@ module.exports = app => {
         return
       }
 
-      let todo = result.map(element => {
-        let info = {
+      const todo = result.map(element => {
+        const info = {
           id: element.id,
           todo: element.todo
         }
