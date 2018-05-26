@@ -8,6 +8,12 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const morgan = require('morgan');
 const logger = require('../services/logger.js');
+const cors = require('cors');
+
+const corsOptions = {
+  origin: ['http://localhost:3000/', 'https://murcul-react-todo.herokuapp.com/'],
+  optionsSuccessStatus: 200
+}
 
 
 const sess = (process.env.NODE_ENV == 'production')
@@ -30,7 +36,7 @@ const sess = (process.env.NODE_ENV == 'production')
     saveUninitialized: false,
     cookie: { name: 'user_session' },
     store: new MongoStore({ mongooseConnection: function() { //creates a session store with MongoDB to prevent memory leak in the server
-      mongoose.connect("mongodb://localhost/party_finder_api", {useMongoClient: true});
+      mongoose.connect("mongodb://localhost/todos", {useMongoClient: true});
 
       const db = mongoose.connection;
 
@@ -61,6 +67,8 @@ module.exports = function() {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+
+  app.use(cors(corsOptions))
 
   consign()
   .include('controllers')

@@ -21,6 +21,7 @@
     "body-parser": "^1.18.1",
     "connect-mongo": "^1.3.2",
     "consign": "^0.1.6",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "express-validator": "^4.1.1",
