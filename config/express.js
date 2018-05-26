@@ -9,9 +9,6 @@ const MongoStore = require('connect-mongo')(session);
 const morgan = require('morgan');
 const logger = require('../services/logger.js');
 
-const CORS_ORIGIN = process.NODE_ENV == 'production' ? "https://murcul-react-todo.herokuapp.com/" : "http://localhost:3000"
-
-
 const sess = (process.env.NODE_ENV == 'production')
   ? {
     secret: process.env.SESSION_SECRET,
