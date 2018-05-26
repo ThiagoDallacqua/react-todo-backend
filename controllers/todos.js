@@ -1,14 +1,6 @@
 const Authentication = require('../middlewares/Authentication')
 const passport = require('passport')
 const logger = require('../services/logger.js');
-const cors = require('cors');
-
-const corsOptions = {
-  origin: ['http://localhost:3000/', 'https://murcul-react-todo.herokuapp.com/'],
-  methods: ['GET', 'POST', 'DELET'],
-  exposedHeaders: ['Content-Type', 'Accept'],
-  optionsSuccessStatus: 200
-}
 
 
 module.exports = app => {
@@ -121,7 +113,7 @@ module.exports = app => {
     });
   });
 
-  app.post('/todos', cors(corsOptions), (req, res) => {
+  app.post('/todos', (req, res) => {
     const model = app.models.todos;
     const connect = app.infra.connectionFactory;
     const Todos = new app.infra.TodoDAO(model, connect);
@@ -147,7 +139,7 @@ module.exports = app => {
     })
   });
 
-  app.get('/todos', cors(corsOptions), (req, res) => {
+  app.get('/todos', (req, res) => {
     const model = app.models.todos;
     const connect = app.infra.connectionFactory;
     const Todos = new app.infra.TodoDAO(model, connect);
@@ -173,7 +165,7 @@ module.exports = app => {
     });
   });
 
-  app.delete('/todos/:id', cors(corsOptions), (req, res) => {
+  app.delete('/todos/:id', (req, res) => {
     const model = app.models.todos;
     const connect = app.infra.connectionFactory;
     const Todos = new app.infra.TodoDAO(model, connect);
